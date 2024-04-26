@@ -27,7 +27,7 @@ function(ar=0, ma=0, var.noise=1, n.freq=500,  main='from specified model',
       sn.ar <- outer(freq, 1:ar.order, function(x, y) sin(2 * pi * x * y)) %*% ar
       cs.ma <- outer(freq, 1:ma.order, function(x, y) cos(2 * pi * x * y)) %*% -ma
       sn.ma <- outer(freq, 1:ma.order, function(x, y) sin(2 * pi * x * y)) %*% -ma                      
-    spec <- var.noise*((1 - cs.ma)^2 + sn.ma^2)/((1 - cs.ar)^2 + sn.ar^2)
+    spec <- (var.noise/xfreq)*((1 - cs.ma)^2 + sn.ma^2)/((1 - cs.ar)^2 + sn.ar^2)
     
     spg.out <- list(freq=freq*xfreq, spec=spec)
    if(plot){
